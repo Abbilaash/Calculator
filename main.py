@@ -22,7 +22,7 @@ def App(THEME):
         theme=dark_theme
     else:
         theme = light_theme
-    equation_entry = customtkinter.CTkEntry(master=window,width=440,height=50,justify="right",state="disabled")
+    equation_entry = customtkinter.CTkEntry(master=window,width=440,height=50,justify="right",state="disabled",text_color=theme['text_color'],fg_color=theme['main_calc_entry_color'],font=("Helvetica",25))
     equation_entry.place(x=5,y=5)
 
     main_calc_entry = customtkinter.CTkEntry(master=window,font=("Helvetica",40),text_color=theme['text_color'],width=440,justify="right",height=80,border_color="white",border_width=1,fg_color=theme['main_calc_entry_color'])
@@ -30,13 +30,23 @@ def App(THEME):
 
     # define the function for calculation
     def Calculate():
+        equation_entry.delete(0,END)
         equation = main_calc_entry.get()
-        print(equation)
+        answer = eval(equation)
+        main_calc_entry.delete(0,END)
+        main_calc_entry.insert("end",answer)
+        equation_entry.configure(state="normal")
+        equation_entry.insert("end",equation)
+        equation_entry.configure(state="disabled")
     
 
 
     # mentioning and defing the buttons
-    clear_button_f = lambda:main_calc_entry.delete(0,END)
+    def clear_button_f():
+        main_calc_entry.delete(0,END)
+        equation_entry.configure(state="normal")
+        equation_entry.delete(0,END)
+        equation_entry.configure(state="disabled")
     customtkinter.CTkButton(master=window,width=50,height=60,corner_radius=70,text='C',font=("DejaVu Sans Mono",35),hover_color=theme['toppanel_button_hovercolor'],fg_color=theme['toppanel_button_color'],command=clear_button_f,anchor='center').place(x=10,y=150)
 
     # defining the number buttons
