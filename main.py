@@ -32,7 +32,10 @@ def App(THEME):
     def Calculate():
         equation_entry.delete(0,END)
         equation = main_calc_entry.get()
-        answer = eval(equation)
+        try:
+            answer = eval(equation)
+        except Exception as e:
+            answer = "Math Error"
         main_calc_entry.delete(0,END)
         main_calc_entry.insert("end",answer)
         equation_entry.configure(state="normal")
@@ -72,6 +75,8 @@ def App(THEME):
     customtkinter.CTkButton(master=window,width=50,height=60,corner_radius=70,text='0',font=("DejaVu Sans Mono",35),hover_color=theme['numbers_color_hover'],fg_color=theme['numbers_color'],command=num0_button_f,anchor='center').place(x=110,y=440)
 
     # defining all the symbols
+    div_button_f = lambda:main_calc_entry.insert("end","/")
+    customtkinter.CTkButton(master=window,width=50,height=60,corner_radius=70,text='/',font=("DejaVu Sans Mono",35),hover_color=theme['toppanel_button_hovercolor'],fg_color=theme['toppanel_button_color'],command=div_button_f,anchor='center').place(x=320,y=150)
     mult_button_f = lambda:main_calc_entry.insert("end","*")
     customtkinter.CTkButton(master=window,width=50,height=60,corner_radius=70,text='x',font=("DejaVu Sans Mono",35),hover_color=theme['toppanel_button_hovercolor'],fg_color=theme['toppanel_button_color'],command=mult_button_f,anchor='center').place(x=320,y=230)
     subt_button_f = lambda:main_calc_entry.insert("end","-")
