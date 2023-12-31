@@ -22,6 +22,7 @@ def App(THEME):
         theme=dark_theme
     else:
         theme = light_theme
+    # the top entry where the equations are saved
     equation_entry = customtkinter.CTkEntry(master=window,width=440,height=50,justify="right",state="disabled",text_color=theme['text_color'],fg_color=theme['main_calc_entry_color'],font=("Helvetica",25))
     equation_entry.place(x=5,y=5)
 
@@ -33,7 +34,7 @@ def App(THEME):
         equation_entry.delete(0,END)
         equation = main_calc_entry.get()
         try:
-            answer = eval(equation)
+            answer = round(eval(equation),5)
         except Exception as e:
             answer = "Math Error"
         main_calc_entry.delete(0,END)
