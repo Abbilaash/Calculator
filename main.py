@@ -2,6 +2,7 @@
 import customtkinter 
 from tkinter import *
 import func
+import math
 
 
 # Starting the tk windows
@@ -33,6 +34,7 @@ def App(THEME):
     def Calculate():
         equation_entry.delete(0,END)
         equation = main_calc_entry.get()
+        prev_ans = 0
         try:
             answer = round(eval(equation),5)
         except Exception as e:
@@ -40,6 +42,7 @@ def App(THEME):
         main_calc_entry.delete(0,END)
         main_calc_entry.insert("end",answer)
         equation_entry.configure(state="normal")
+        equation_entry.delete(0,END)
         equation_entry.insert("end",equation)
         equation_entry.configure(state="disabled")
     
@@ -51,7 +54,7 @@ def App(THEME):
         equation_entry.configure(state="normal")
         equation_entry.delete(0,END)
         equation_entry.configure(state="disabled")
-    customtkinter.CTkButton(master=window,width=50,height=60,corner_radius=70,text='C',font=("DejaVu Sans Mono",35),hover_color=theme['toppanel_button_hovercolor'],fg_color=theme['toppanel_button_color'],command=clear_button_f,anchor='center').place(x=10,y=150)
+    customtkinter.CTkButton(master=window,width=180,height=60,corner_radius=70,text='CLEAR',font=("DejaVu Sans Mono",25),hover_color=theme['toppanel_button_hovercolor'],fg_color=theme['toppanel_button_color'],command=clear_button_f,anchor='center').place(x=10,y=150)
 
     # defining the number buttons
     num7_button_f = lambda:main_calc_entry.insert("end","7")
@@ -73,23 +76,22 @@ def App(THEME):
     num3_button_f = lambda:main_calc_entry.insert("end","3")
     customtkinter.CTkButton(master=window,width=50,height=60,corner_radius=70,text='3',font=("DejaVu Sans Mono",35),hover_color=theme['numbers_color_hover'],fg_color=theme['numbers_color'],command=num3_button_f,anchor='center').place(x=210,y=370)
     num0_button_f = lambda:main_calc_entry.insert("end","0")
-    customtkinter.CTkButton(master=window,width=50,height=60,corner_radius=70,text='0',font=("DejaVu Sans Mono",35),hover_color=theme['numbers_color_hover'],fg_color=theme['numbers_color'],command=num0_button_f,anchor='center').place(x=110,y=440)
+    customtkinter.CTkButton(master=window,width=180,height=60,corner_radius=70,text='0',font=("DejaVu Sans Mono",35),hover_color=theme['numbers_color_hover'],fg_color=theme['numbers_color'],command=num0_button_f,anchor='center').place(x=10,y=440)
 
     # defining all the symbols
     div_button_f = lambda:main_calc_entry.insert("end","/")
-    customtkinter.CTkButton(master=window,width=50,height=60,corner_radius=70,text='/',font=("DejaVu Sans Mono",35),hover_color=theme['toppanel_button_hovercolor'],fg_color=theme['toppanel_button_color'],command=div_button_f,anchor='center').place(x=320,y=150)
+    customtkinter.CTkButton(master=window,width=80,height=60,corner_radius=70,text='/',font=("DejaVu Sans Mono",35),hover_color=theme['toppanel_button_hovercolor'],fg_color=theme['toppanel_button_color'],command=div_button_f,anchor='center').place(x=320,y=150)
     mult_button_f = lambda:main_calc_entry.insert("end","*")
     customtkinter.CTkButton(master=window,width=50,height=60,corner_radius=70,text='x',font=("DejaVu Sans Mono",35),hover_color=theme['toppanel_button_hovercolor'],fg_color=theme['toppanel_button_color'],command=mult_button_f,anchor='center').place(x=320,y=230)
     subt_button_f = lambda:main_calc_entry.insert("end","-")
-    customtkinter.CTkButton(master=window,width=50,height=60,corner_radius=70,text='-',font=("DejaVu Sans Mono",35),hover_color=theme['toppanel_button_hovercolor'],fg_color=theme['toppanel_button_color'],command=subt_button_f,anchor='center').place(x=320,y=300)
+    customtkinter.CTkButton(master=window,width=80,height=60,corner_radius=70,text='-',font=("DejaVu Sans Mono",35),hover_color=theme['toppanel_button_hovercolor'],fg_color=theme['toppanel_button_color'],command=subt_button_f,anchor='center').place(x=320,y=300)
     add_button_f = lambda:main_calc_entry.insert("end","+")
     customtkinter.CTkButton(master=window,width=50,height=60,corner_radius=70,text='+',font=("DejaVu Sans Mono",35),hover_color=theme['toppanel_button_hovercolor'],fg_color=theme['toppanel_button_color'],command=add_button_f,anchor='center').place(x=320,y=370)
     customtkinter.CTkButton(master=window,width=50,height=60,corner_radius=70,text='=',font=("DejaVu Sans Mono",35),hover_color="RoyalBlue3",fg_color="RoyalBlue1",text_color="black",command=Calculate,anchor='center').place(x=320,y=440)
     point_button_f = lambda:main_calc_entry.insert("end",".")
-    customtkinter.CTkButton(master=window,width=50,height=60,corner_radius=70,text='.',font=("DejaVu Sans Mono",35),hover_color=theme['numbers_color_hover'],fg_color=theme['numbers_color'],command=point_button_f,anchor='center').place(x=210,y=440)
+    customtkinter.CTkButton(master=window,width=80,height=60,corner_radius=70,text='.',font=("DejaVu Sans Mono",35),hover_color=theme['numbers_color_hover'],fg_color=theme['numbers_color'],command=point_button_f,anchor='center').place(x=210,y=440)
 
-
-
+    customtkinter.CTkLabel(master=window,width=450,height=30,text="*Created by Abbilaash*",font=("DejaVu Sans Mono",17),text_color=theme['numbers_color'],anchor=CENTER).place(x=0,y=570)
 
 
 
