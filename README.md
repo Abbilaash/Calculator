@@ -1,2 +1,2 @@
-# Scientific-Calculator
-Scientific Calculator
+# Simple Calculator
+Simple Calculator
